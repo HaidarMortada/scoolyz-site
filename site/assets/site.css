@@ -1,0 +1,114 @@
+/* scoolyz.com: flat colours, the logo's blue, system fonts. Works in English (ltr) and Arabic (rtl). */
+:root {
+  color-scheme: light dark;
+  --bg: #f6f7fb;
+  --card: #ffffff;
+  --text: #1f2242;
+  --muted: #555b7a;
+  --line: #e2e5f0;
+  --brand: #4575e0;
+  --brand-soft: #e7eefc;
+  --danger: #c2334d;
+  --ok: #1d7f5f;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #14162a;
+    --card: #1f2240;
+    --text: #eceefa;
+    --muted: #b9bdd6;
+    --line: #2f3358;
+    --brand: #7aa0f0;
+    --brand-soft: #26305a;
+    --danger: #ff7b93;
+    --ok: #5fd3a8;
+  }
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  font-family: "Segoe UI", system-ui, -apple-system, Roboto, "Noto Sans Arabic", Tahoma, sans-serif;
+  font-size: 16px;
+  line-height: 1.65;
+  color: var(--text);
+  background: var(--bg);
+}
+a { color: var(--brand); }
+a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
+  outline: 3px solid color-mix(in srgb, var(--brand) 55%, transparent);
+  outline-offset: 2px;
+}
+.top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 18px 16px;
+}
+.top img { height: 32px; width: auto; display: block; }
+.top nav { display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: 0.95rem; }
+.top nav a { text-decoration: none; font-weight: 600; }
+main { max-width: 880px; margin: 0 auto; padding: 0 16px 48px; }
+.card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 24px 22px;
+  margin: 0 0 18px;
+}
+h1 { font-size: 1.8rem; line-height: 1.25; margin: 8px 0 12px; }
+h2 { font-size: 1.2rem; margin: 26px 0 8px; }
+h3 { font-size: 1.02rem; margin: 18px 0 6px; }
+p, li { color: var(--text); }
+.muted { color: var(--muted); }
+.lead { font-size: 1.1rem; color: var(--muted); }
+ul { padding-inline-start: 1.3em; }
+table { width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 0.95rem; }
+th, td { text-align: start; vertical-align: top; padding: 8px 10px; border-bottom: 1px solid var(--line); }
+th { font-weight: 600; }
+.table-wrap { overflow-x: auto; }
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; }
+.tile { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 18px; }
+.tile h3 { margin-top: 0; }
+.button, button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 46px;
+  padding: 0 20px;
+  font: inherit;
+  font-weight: 600;
+  color: #fff;
+  background: var(--brand);
+  border: 0;
+  border-radius: 12px;
+  text-decoration: none;
+  cursor: pointer;
+}
+.button.ghost, button.ghost { color: var(--text); background: transparent; border: 1px solid var(--line); }
+label { display: block; font-weight: 600; margin: 14px 0 6px; }
+input, select, textarea {
+  width: 100%;
+  min-height: 46px;
+  padding: 10px 12px;
+  font: inherit;
+  color: var(--text);
+  background: var(--bg);
+  border: 1.5px solid var(--line);
+  border-radius: 12px;
+}
+textarea { min-height: 110px; resize: vertical; }
+.check { display: flex; gap: 10px; align-items: flex-start; font-weight: 400; }
+.check input { width: 20px; min-height: 20px; margin-top: 4px; flex: none; }
+.hint { font-size: 0.9rem; color: var(--muted); margin: 6px 0 0; }
+.actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+.notice { border-inline-start: 4px solid var(--brand); background: var(--brand-soft); padding: 12px 14px; border-radius: 10px; }
+.done { border-inline-start-color: var(--ok); }
+.error { color: var(--danger); font-weight: 600; }
+pre.mail { white-space: pre-wrap; word-break: break-word; background: var(--bg); border: 1px solid var(--line); border-radius: 10px; padding: 12px; font-size: 0.9rem; user-select: all; }
+footer { max-width: 880px; margin: 0 auto; padding: 24px 16px 40px; font-size: 0.9rem; color: var(--muted); }
+footer a { margin-inline-end: 14px; }
+[hidden] { display: none !important; }

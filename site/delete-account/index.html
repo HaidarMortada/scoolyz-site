@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Delete your Scoolyz account</title>
+  <meta name="description" content="How to delete your Scoolyz account, in the app or with this form, and what happens to your data and your school's records.">
+  <link rel="alternate" hreflang="ar" href="https://scoolyz.com/delete-account/ar/">
+  <link rel="icon" href="/assets/emblem.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/site.css">
+</head>
+<body>
+  <header class="top">
+    <a href="/" aria-label="Scoolyz"><picture><source srcset="/assets/logo-light.svg" media="(prefers-color-scheme: dark)"><img src="/assets/logo.svg" alt="Scoolyz" width="172" height="32"></picture></a>
+    <nav><a href="/delete-account/ar/" lang="ar" hreflang="ar">العربية</a></nav>
+  </header>
+  <main>
+    <section class="card">
+      <h1>Delete your Scoolyz account</h1>
+      <p class="lead">You can delete your account yourself in the app, or ask us here if you no longer have the app or can't sign in.</p>
+
+      <h2>In the app (fastest)</h2>
+      <ol>
+        <li>Open Scoolyz and sign in.</li>
+        <li>Tap your picture at the top, then <strong>Profile</strong>.</li>
+        <li>Open <strong>Delete my account</strong>, read what will happen, enter your password and confirm.</li>
+      </ol>
+      <p>Your account is closed at once: you are signed out everywhere and can't sign in again.</p>
+
+      <h2>What is deleted</h2>
+      <p>Your <strong>account</strong>, which is the part that belongs to you:</p>
+      <ul>
+        <li>your sign-in (user name or email address and password), which can no longer be used;</li>
+        <li>your profile photo;</li>
+        <li>the devices signed in to your account, and their notification tokens;</li>
+        <li>your notifications inside Scoolyz and your app settings.</li>
+      </ul>
+
+      <h2>What your school keeps</h2>
+      <p>Scoolyz is run for your school, and the school is responsible for its <strong>school records</strong>. Deleting your account does not delete them, because schools must keep many of them (often by law):</p>
+      <ul>
+        <li>student files, enrolment, attendance, marks and report cards;</li>
+        <li>fees, payments and receipts;</li>
+        <li>health records kept by the school clinic;</li>
+        <li>notices, homework and messages exchanged within the school, which keep the sender's name.</li>
+      </ul>
+      <p>If you want any of these erased too, say so in your request (or ask your school directly). Your school decides what it may erase and tells you if a record must be kept, and for how long.</p>
+      <p>Deleting a parent's account does not delete the children's own student sign-ins. Tick the box below if you want those closed as well.</p>
+    </section>
+
+    <section class="card">
+      <h2>Ask for deletion without the app</h2>
+      <p>Fill this in and send it. It opens an email to Scoolyz with your request already written. Nothing is sent until you press send in your email app.</p>
+      <form id="request" novalidate>
+        <label for="school">Your school</label>
+        <select id="school" required>
+          <option value="">Choose…</option>
+          <option value="other">Not listed (write its name in the notes)</option>
+        </select>
+
+        <label for="name">Your full name</label>
+        <input id="name" autocomplete="name" required>
+
+        <label for="login">The user name or email address you sign in with</label>
+        <input id="login" autocomplete="username" required>
+
+        <label for="role">You are</label>
+        <select id="role">
+          <option>A parent or guardian</option>
+          <option>A student</option>
+          <option>A member of staff</option>
+        </select>
+
+        <label for="phone">A phone number the school knows (optional)</label>
+        <input id="phone" type="tel" autocomplete="tel">
+        <p class="hint">It helps us and your school confirm the request is yours.</p>
+
+        <label class="check"><input type="checkbox" id="children"> Also close my children's student sign-ins</label>
+
+        <label for="notes">Anything else (for example school records you want erased)</label>
+        <textarea id="notes"></textarea>
+
+        <label class="check"><input type="checkbox" id="confirm" required> I understand my account will be closed and can't be restored.</label>
+
+        <p class="error" id="form-error" hidden></p>
+        <div class="actions"><button type="submit">Write my request</button></div>
+      </form>
+
+      <div id="sent" class="notice done" hidden>
+        <p><strong>Your email app should open with the request.</strong> Press send there.</p>
+        <p>If nothing opened, copy this text and email it to <a href="mailto:rabihmtd@gmail.com">rabihmtd@gmail.com</a>:</p>
+        <pre class="mail" id="mail-text"></pre>
+        <button type="button" class="ghost" id="copy">Copy the text</button>
+      </div>
+
+      <h3>What happens next</h3>
+      <p>We confirm the request with you using the contact details your school has on file, then close the account within <strong>30 days</strong> (usually much sooner) and reply to tell you it is done. Questions: <a href="mailto:rabihmtd@gmail.com">rabihmtd@gmail.com</a>.</p>
+    </section>
+  </main>
+  <footer>
+    <a href="/privacy/">Privacy policy</a>
+    <a href="/">Scoolyz</a>
+  </footer>
+  <script type="application/json" id="strings">{
+    "subject": "Account deletion request",
+    "mailIntro": "Please delete my Scoolyz account.",
+    "school": "School",
+    "name": "Full name",
+    "login": "Sign-in (user name or email)",
+    "role": "I am",
+    "phone": "Phone",
+    "children": "Also close my children's student sign-ins",
+    "notes": "Notes",
+    "yes": "Yes",
+    "no": "No",
+    "missing": "Please choose your school, fill in your name and sign-in, and tick the last box.",
+    "copied": "Copied"
+  }</script>
+  <script src="/assets/delete-account.js" defer></script>
+</body>
+</html>

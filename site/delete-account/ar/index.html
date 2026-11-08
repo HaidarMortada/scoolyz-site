@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>حذف حسابك في Scoolyz</title>
+  <meta name="description" content="كيف تحذف حسابك في Scoolyz، من التطبيق أو بهذا النموذج، وماذا يحدث لبياناتك ولسجلات مدرستك.">
+  <link rel="alternate" hreflang="en" href="https://scoolyz.com/delete-account/">
+  <link rel="icon" href="/assets/emblem.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/site.css">
+</head>
+<body>
+  <header class="top">
+    <a href="/ar/" aria-label="Scoolyz"><picture><source srcset="/assets/logo-light.svg" media="(prefers-color-scheme: dark)"><img src="/assets/logo.svg" alt="Scoolyz" width="172" height="32"></picture></a>
+    <nav><a href="/delete-account/" lang="en" hreflang="en">English</a></nav>
+  </header>
+  <main>
+    <section class="card">
+      <h1>حذف حسابك في Scoolyz</h1>
+      <p class="lead">يمكنك حذف حسابك بنفسك من التطبيق، أو أن تطلب ذلك منّا هنا إن لم يعد التطبيق لديك أو تعذّر عليك تسجيل الدخول.</p>
+
+      <h2>من التطبيق (الأسرع)</h2>
+      <ol>
+        <li>افتح Scoolyz وسجّل الدخول.</li>
+        <li>اضغط على صورتك في الأعلى، ثم <strong>الملف الشخصي</strong>.</li>
+        <li>افتح <strong>حذف حسابي</strong>، واقرأ ما سيحدث، ثم أدخل كلمة المرور وأكّد.</li>
+      </ol>
+      <p>يُغلق حسابك فورًا: يُسجَّل خروجك من كل الأجهزة ولا يمكنك الدخول مجددًا.</p>
+
+      <h2>ما الذي يُحذف</h2>
+      <p><strong>حسابك</strong>، أي الجزء الذي يخصّك أنت:</p>
+      <ul>
+        <li>بيانات الدخول (اسم المستخدم أو البريد الإلكتروني وكلمة المرور)، فلا يعود استخدامها ممكنًا؛</li>
+        <li>صورة ملفك الشخصي؛</li>
+        <li>الأجهزة المسجّلة في حسابك ورموز الإشعارات الخاصة بها؛</li>
+        <li>إشعاراتك داخل Scoolyz وإعدادات التطبيق.</li>
+      </ul>
+
+      <h2>ما الذي تحتفظ به المدرسة</h2>
+      <p>يعمل Scoolyz لصالح مدرستك، والمدرسة مسؤولة عن <strong>سجلاتها المدرسية</strong>. حذف حسابك لا يحذفها، لأن المدارس ملزمة بالاحتفاظ بكثير منها (غالبًا بحكم القانون):</p>
+      <ul>
+        <li>ملفات التلاميذ والتسجيل والحضور والعلامات وكشوف العلامات؛</li>
+        <li>الأقساط والدفعات والإيصالات؛</li>
+        <li>السجلات الصحية التي تحفظها عيادة المدرسة؛</li>
+        <li>التعاميم والفروض والرسائل المتبادلة داخل المدرسة، وتبقى باسم مُرسِلها.</li>
+      </ul>
+      <p>إن أردت محو أيٍّ منها أيضًا، فاذكر ذلك في طلبك (أو اطلبه من مدرستك مباشرة). تقرّر المدرسة ما يمكنها محوه، وتُعلمك إن كان عليها الاحتفاظ بسجلّ ما ولأي مدة.</p>
+      <p>حذف حساب أحد الأهل لا يحذف حسابات الدخول الخاصة بالأولاد. ضع علامة في الخانة أدناه إن أردت إغلاقها أيضًا.</p>
+    </section>
+
+    <section class="card">
+      <h2>طلب الحذف من دون التطبيق</h2>
+      <p>املأ النموذج وأرسله. سيفتح رسالة بريد إلكتروني إلى Scoolyz وفيها طلبك مكتوبًا. لا يُرسَل شيء حتى تضغط «إرسال» في تطبيق البريد.</p>
+      <form id="request" novalidate>
+        <label for="school">مدرستك</label>
+        <select id="school" required>
+          <option value="">اختر…</option>
+          <option value="other">غير موجودة في القائمة (اكتب اسمها في الملاحظات)</option>
+        </select>
+
+        <label for="name">اسمك الكامل</label>
+        <input id="name" autocomplete="name" required>
+
+        <label for="login">اسم المستخدم أو البريد الإلكتروني الذي تدخل به</label>
+        <input id="login" autocomplete="username" dir="ltr" required>
+
+        <label for="role">أنت</label>
+        <select id="role">
+          <option>وليّ أمر</option>
+          <option>تلميذ</option>
+          <option>موظف في المدرسة</option>
+        </select>
+
+        <label for="phone">رقم هاتف تعرفه المدرسة (اختياري)</label>
+        <input id="phone" type="tel" autocomplete="tel" dir="ltr">
+        <p class="hint">يساعدنا ويساعد مدرستك على التأكد من أن الطلب منك.</p>
+
+        <label class="check"><input type="checkbox" id="children"> أغلقوا أيضًا حسابات الدخول الخاصة بأولادي</label>
+
+        <label for="notes">أي شيء آخر (مثلًا سجلات مدرسية تريد محوها)</label>
+        <textarea id="notes"></textarea>
+
+        <label class="check"><input type="checkbox" id="confirm" required> أفهم أن حسابي سيُغلق ولا يمكن استرجاعه.</label>
+
+        <p class="error" id="form-error" hidden></p>
+        <div class="actions"><button type="submit">اكتب طلبي</button></div>
+      </form>
+
+      <div id="sent" class="notice done" hidden>
+        <p><strong>يُفترض أن يُفتح تطبيق البريد وفيه الطلب.</strong> اضغط «إرسال» هناك.</p>
+        <p>إن لم يُفتح شيء، انسخ هذا النص وأرسله إلى <a href="mailto:rabihmtd@gmail.com" dir="ltr">rabihmtd@gmail.com</a>:</p>
+        <pre class="mail" id="mail-text" dir="auto"></pre>
+        <button type="button" class="ghost" id="copy">انسخ النص</button>
+      </div>
+
+      <h3>ماذا يحدث بعد ذلك</h3>
+      <p>نتأكّد من الطلب معك عبر بيانات الاتصال المسجّلة لدى مدرستك، ثم نغلق الحساب خلال <strong>30 يومًا</strong> (وغالبًا قبل ذلك بكثير)، ونردّ عليك لإعلامك. للاستفسار: <a href="mailto:rabihmtd@gmail.com" dir="ltr">rabihmtd@gmail.com</a>.</p>
+    </section>
+  </main>
+  <footer>
+    <a href="/privacy/ar/">سياسة الخصوصية</a>
+    <a href="/ar/">Scoolyz</a>
+  </footer>
+  <script type="application/json" id="strings">{
+    "subject": "طلب حذف حساب / Account deletion request",
+    "mailIntro": "أرجو حذف حسابي في Scoolyz.",
+    "school": "المدرسة",
+    "name": "الاسم الكامل",
+    "login": "بيانات الدخول (اسم المستخدم أو البريد)",
+    "role": "أنا",
+    "phone": "الهاتف",
+    "children": "إغلاق حسابات الأولاد أيضًا",
+    "notes": "ملاحظات",
+    "yes": "نعم",
+    "no": "لا",
+    "missing": "اختر مدرستك، واكتب اسمك وبيانات الدخول، وضع علامة في الخانة الأخيرة.",
+    "copied": "تم النسخ"
+  }</script>
+  <script src="/assets/delete-account.js" defer></script>
+</body>
+</html>

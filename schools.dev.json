@@ -1,0 +1,16 @@
+{
+  "schools": [
+    {
+      "code": "local",
+      "name": "Scoolyz (local development)",
+      "name_ar": "Scoolyz (تطوير محلي)",
+      "url": "http://localhost:8001"
+    },
+    {
+      "code": "local2",
+      "name": "Second local school (same stack, another host name)",
+      "name_ar": "مدرسة محلية ثانية",
+      "url": "http://127.0.0.1:8001"
+    }
+  ]
+}

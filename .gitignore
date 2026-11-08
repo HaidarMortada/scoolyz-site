@@ -1,0 +1,9 @@
+_site/
+_site-dev/
+node_modules/
+.DS_Store
+# Never in this public repository: signing keys, passwords, server files.
+*.jks
+*.keystore
+*.key
+.env*
