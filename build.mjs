@@ -184,6 +184,9 @@ function main() {
   writeDownloadPage(siteDir, out);
   // GitHub Pages: serve files as they are (no Jekyll), so folders starting with "_" or "." would also work.
   writeFileSync(join(out, '.nojekyll'), '');
+  // The custom domain. With "Source: GitHub Actions" GitHub reads it from Settings -> Pages, not from this file;
+  // it is here so the published site says which domain it belongs to, whichever way Pages is set up.
+  if (!dev) writeFileSync(join(out, 'CNAME'), 'scoolyz.com\n');
   console.log(`${list.length} school(s) -> ${out}: ${list.map((s) => s.code).join(', ')}`);
 }
 

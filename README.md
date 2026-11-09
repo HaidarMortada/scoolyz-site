@@ -49,6 +49,8 @@ holds no secrets and no app source code (that is in the private SIMS repository)
 3. Repository → **Settings → Pages**:
    - **Build and deployment → Source: GitHub Actions**.
    - **Custom domain:** `scoolyz.com` → Save. (GitHub checks the DNS; it can take a few minutes after step 2.)
+     With the GitHub Actions source this setting is what counts; the build also writes `_site/CNAME` with
+     `scoolyz.com`, which GitHub ignores in that mode.
    - When the check passes: tick **Enforce HTTPS** (the certificate can take up to an hour the first time).
 4. Recommended, against domain takeover: your GitHub **Settings (account) → Pages → Add a verified domain** →
    `scoolyz.com`. GitHub shows a TXT record to add (below).
