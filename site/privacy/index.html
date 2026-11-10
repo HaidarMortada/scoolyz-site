@@ -17,7 +17,7 @@
   <main>
     <article class="card">
       <h1>Privacy policy</h1>
-      <p class="muted">Last updated: 8 November 2026 · DRAFT for review</p>
+      <p class="muted">Last updated: 10 November 2026</p>
 
       <p>Scoolyz is a school management system. Each school runs its own Scoolyz site at <strong>&lt;school&gt;.scoolyz.com</strong>, and parents, students and staff use the Scoolyz app (Android, Windows) or a web browser to reach it. This policy explains what is collected, why, who sees it and what you can do about it.</p>
 
@@ -39,13 +39,13 @@
           <tr><td>School life</td><td>Attendance, marks, exams, report cards, behaviour notes, homework and hand-ins, the timetable, events</td><td>Teaching and keeping families informed</td></tr>
           <tr><td>Health</td><td>Allergies, conditions, medicines given at school, vaccinations, clinic visits, emergency contacts</td><td>Keeping students safe at school (only staff the school allows can see it)</td></tr>
           <tr><td>Fees</td><td>Fees, discounts, payments and receipts</td><td>The school's billing. No card or bank numbers are stored, and the app takes no payments.</td></tr>
-          <tr><td>Messages and files</td><td>Notices and comments, class room posts, absence requests and the documents attached, forms, uploaded photos and files</td><td>Communication within the school</td></tr>
+          <tr><td>Messages and files</td><td>Notices and comments, class room posts and live-lesson chat, absence requests and the documents attached, forms, uploaded photos and files</td><td>Communication within the school</td></tr>
           <tr><td>Location</td><td>The <strong>bus driver's</strong> phone position during a trip (shared with that bus's families); staff check-in position if the school turns it on; pickup addresses entered by the school</td><td>Bus tracking and safety. The app never collects the location of parents or students.</td></tr>
-          <tr><td>Ask Scoolyz</td><td>Questions you ask the built-in assistant and its answers</td><td>Answering them. It runs on the school's own server; nothing is sent to an outside AI company.</td></tr>
-          <tr><td>Device and technical data</td><td>The app's push-notification token, app version, IP address and browser or app details in sign-in records and server logs</td><td>Delivering notifications, security, fixing problems</td></tr>
+          <tr><td>Ask Scoolyz</td><td>Questions you ask the built-in assistant and its answers</td><td>Answering them. It runs on the school's own server; nothing is sent to an outside AI company. Kept so you can scroll back; you can clear them, and they are deleted 90 days after the end of the school year.</td></tr>
+          <tr><td>Device and technical data</td><td>The app's push-notification token and Firebase installation ID (created only after you sign in), app version, IP address and browser or app details in sign-in records and server logs</td><td>Delivering notifications, security, fixing problems</td></tr>
         </tbody>
       </table></div>
-      <p>Schools may also record live lessons in class rooms, including the voices of those taking part, and keep them as long as the school chooses. (The Android app does not use the microphone.)</p>
+      <p>Schools may also record live lessons in class rooms, including the voices of those taking part. Recordings are deleted 90 days after the end of their school year at the latest, sooner if the school chooses. (The Android app does not use the microphone.)</p>
 
       <h2>4. What the app asks your phone for</h2>
       <ul>
@@ -59,25 +59,34 @@
       <p>Scoolyz does <strong>not sell</strong> personal data, shows <strong>no advertising</strong>, and contains <strong>no analytics or tracking tools</strong>. Within your school, people see what their role allows (a parent sees their own children; a teacher their classes). Outside the school, data goes only to services needed to run Scoolyz:</p>
       <ul>
         <li>the company hosting the school's server, and an encrypted backup store;</li>
-        <li><strong>Google Firebase Cloud Messaging</strong>, which delivers notifications to Android phones (it receives the phone's token and the notification's text);</li>
+        <li><strong>Google Firebase Cloud Messaging</strong>, which delivers notifications to Android phones (it receives the phone's token, its Firebase installation ID and the notification's text);</li>
         <li>the email provider your school uses, for emails the school sends;</li>
         <li>map tile services (OpenStreetMap, OpenFreeMap), which receive your device's IP address when a map is shown;</li>
-        <li>if your school turns it on, the learning platform Archimind, when you choose to sign in to it from Scoolyz (your name, email and role).</li>
+        <li>OpenStreetMap's place search (Nominatim), which receives, from the school's server, the place names staff type to find a bus stop or the school, never anyone's position;</li>
+        <li>if your school turns it on, the learning platform Archimind, when an adult (or a student in a web browser) chooses to sign in to it from Scoolyz (name, email and role). Students never see it in the Android app.</li>
       </ul>
       <p>We may also disclose data when the law requires it.</p>
 
       <h2>6. How long it is kept</h2>
-      <p>Your school decides how long it keeps its records. Some things are removed automatically: read notifications after 90 days, bus positions after 90 days, server logs after 14 days, backups after at most 8 weeks.</p>
+      <p>Your school decides how long it keeps its records. Some things are removed automatically: Ask Scoolyz conversations and live-lesson recordings 90 days after the end of their school year (your school can set a different period), read notifications after 90 days, bus positions after 90 days, server logs after 14 days, backups after at most 8 weeks.</p>
 
       <h2>7. Security</h2>
       <p>All connections use HTTPS. Passwords are stored as secure hashes. Backups are encrypted. Access inside the school follows each person's role. The app only opens your school's own address on scoolyz.com; other links open in your browser.</p>
 
       <h2>8. Children</h2>
-      <p>Students, including children, may have accounts created by their school. Schools are responsible for informing parents and obtaining any consent the law requires. Children's data is used only to run the school, never for advertising or profiling.</p>
+      <p>Students, including children under 13, use Scoolyz with accounts their school creates. Nobody can sign up on their own.</p>
+      <ul>
+        <li><strong>The school decides.</strong> The school is responsible for the student data it enters and for informing parents and obtaining any consent the law requires (for example under COPPA in the United States or the GDPR in the European Union). Scoolyz processes children's data only on the school's behalf and only to run the school.</li>
+        <li><strong>What a student's account holds:</strong> their name, class, timetable, homework, marks and report cards, attendance, the school's notices, and what they hand in or write in the app (homework files, comments in their class, questions to Ask Scoolyz). Health and fee records are entered and seen by school staff and the student's parents, not by other students.</li>
+        <li><strong>What we never do with children's data:</strong> no advertising, no profiling, no selling, no analytics or tracking tools, and no advertising ID or device identifiers (such as IMEI or MAC address).</li>
+        <li><strong>Location:</strong> the app never collects the location of students or parents. Only a bus driver's phone shares its position, and only during a trip.</li>
+        <li><strong>Who students can talk to:</strong> only their school: their teachers and class, in class spaces the school controls. Students' comments, class posts and live-lesson chat are off unless the school turns them on. The first time a student posts, they are reminded how to stay safe, and a message with a phone number, email, address or social media account waits for a teacher's approval.</li>
+        <li><strong>Parents' rights:</strong> a parent sees their child's school information in their own account and can ask the school to correct it. A student who asks to close their account must wait for a parent to confirm it on their own profile. A parent can also close their children's sign-ins when closing their own account, or at <a href="/delete-account/">scoolyz.com/delete-account</a>. The school keeps the records the law requires it to keep.</li>
+      </ul>
 
       <h2>9. Your choices and rights</h2>
       <ul>
-        <li><strong>Delete your account</strong> in the app (Profile → Delete my account) or at <a href="/delete-account/">scoolyz.com/delete-account</a>. Your sign-in, photo, devices and notifications are deleted at once; the school keeps its records, as explained there.</li>
+        <li><strong>Delete your account</strong> in the app (Profile → Delete my account) or at <a href="/delete-account/">scoolyz.com/delete-account</a>. Your sign-in, photo, devices and notifications are deleted at once; the school keeps its records, as explained there. A student's account closes once a parent confirms.</li>
         <li>Ask your school to see, correct or erase records about you or your child, as the law allows.</li>
         <li>Turn notifications, the camera or location off at any time in your phone's settings.</li>
       </ul>
