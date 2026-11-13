@@ -141,7 +141,30 @@ export function writeDirectory(list, out) {
       .map(({ code, name, name_ar, url, logo }) => ({ code, name, ...(name_ar ? { name_ar } : {}), url, ...(logo ? { logo } : {}) })),
   };
   writeFileSync(join(dir, 'index.json'), `${JSON.stringify(index, null, 2)}\n`);
+  // A visitor who opens /directory/ gets a plain page, not the list: the list is for the apps' name search only.
+  writeFileSync(join(dir, 'index.html'), DIRECTORY_PAGE);
 }
+
+const DIRECTORY_PAGE = `<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Scoolyz</title>
+  <link rel="stylesheet" href="/assets/site.css">
+</head>
+<body>
+  <main class="wrap">
+    <article class="card">
+      <h1>Scoolyz</h1>
+      <p>This address is used by the Scoolyz apps. To find your school, open the app and type the code your school gave you.</p>
+      <p><a href="/">scoolyz.com</a></p>
+    </article>
+  </main>
+</body>
+</html>
+`;
 
 /**
  * /download/windows: the link schools give families for the Windows app. GitHub Pages cannot answer with a 302, so

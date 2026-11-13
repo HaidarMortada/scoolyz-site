@@ -54,11 +54,10 @@
       <h2>Ask for deletion without the app</h2>
       <p>Fill this in and send it. It opens an email to Scoolyz with your request already written. Nothing is sent until you press send in your email app.</p>
       <form id="request" novalidate>
-        <label for="school">Your school</label>
-        <select id="school" required>
-          <option value="">Choose…</option>
-          <option value="other">Not listed (write its name in the notes)</option>
-        </select>
+        <label for="school">School code</label>
+        <input id="school" autocomplete="off" autocapitalize="none" spellcheck="false" aria-describedby="school-hint school-error">
+        <p class="hint" id="school-hint">The code your school gave you for the Scoolyz app. If you don't have it, leave this empty and write your school's name in the notes.</p>
+        <p class="error" id="school-error" role="alert" hidden></p>
 
         <label for="name">Your full name</label>
         <input id="name" autocomplete="name" required>
@@ -79,7 +78,7 @@
 
         <label class="check"><input type="checkbox" id="children"> Also close my children's student sign-ins</label>
 
-        <label for="notes">Anything else (for example school records you want erased)</label>
+        <label for="notes">Anything else (your school's name if you have no code, or school records you want erased)</label>
         <textarea id="notes"></textarea>
 
         <label class="check"><input type="checkbox" id="confirm" required> I understand my account will be closed and can't be restored.</label>
@@ -90,13 +89,13 @@
 
       <div id="sent" class="notice done" hidden>
         <p><strong>Your email app should open with the request.</strong> Press send there.</p>
-        <p>If nothing opened, copy this text and email it to <a href="mailto:rabihmtd@gmail.com">rabihmtd@gmail.com</a>:</p>
+        <p>If nothing opened, copy this text and email it to <a href="mailto:haidarmortada30@gmail.com">haidarmortada30@gmail.com</a>:</p>
         <pre class="mail" id="mail-text"></pre>
         <button type="button" class="ghost" id="copy">Copy the text</button>
       </div>
 
       <h3>What happens next</h3>
-      <p>We confirm the request with you using the contact details your school has on file, then close the account within <strong>30 days</strong> (usually much sooner) and reply to tell you it is done. For a student's account, we confirm with a parent. Questions: <a href="mailto:rabihmtd@gmail.com">rabihmtd@gmail.com</a>.</p>
+      <p>We confirm the request with you using the contact details your school has on file, then close the account within <strong>30 days</strong> (usually much sooner) and reply to tell you it is done. For a student's account, we confirm with a parent. Questions: <a href="mailto:haidarmortada30@gmail.com">haidarmortada30@gmail.com</a>.</p>
     </section>
   </main>
   <footer>
@@ -115,7 +114,11 @@
     "notes": "Notes",
     "yes": "Yes",
     "no": "No",
-    "missing": "Please choose your school, fill in your name and sign-in, and tick the last box.",
+    "missing": "Please fill in your name and sign-in, and tick the last box.",
+    "codeUnknown": "We couldn't find that school code. Check it with your school.",
+    "codeOrNotes": "Type your school's code, or write your school's name in the notes.",
+    "notListed": "no code (see the notes)",
+    "notChecked": "not checked",
     "copied": "Copied"
   }</script>
   <script src="/assets/delete-account.js" defer></script>

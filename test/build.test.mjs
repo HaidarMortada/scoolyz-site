@@ -53,7 +53,7 @@ test('the directory files are written: one per school and the list', () => {
     ],
   });
   writeDirectory(list, out);
-  assert.deepEqual(readdirSync(join(out, 'directory')).sort(), ['alpha.json', 'index.json', 'zeta.json']);
+  assert.deepEqual(readdirSync(join(out, 'directory')).sort(), ['alpha.json', 'index.html', 'index.json', 'zeta.json']);
   const zeta = JSON.parse(readFileSync(join(out, 'directory', 'zeta.json'), 'utf8'));
   assert.equal(zeta.min_mobile_version, '1.2.0');
   const index = JSON.parse(readFileSync(join(out, 'directory', 'index.json'), 'utf8'));
@@ -81,7 +81,7 @@ test('an unlisted school has its own file but is not in the list; a listed one i
   });
   assert.deepEqual(problems, []);
   writeDirectory(list, out);
-  assert.deepEqual(readdirSync(join(out, 'directory')).sort(), ['explicit.json', 'hidden.json', 'index.json', 'shown.json']);
+  assert.deepEqual(readdirSync(join(out, 'directory')).sort(), ['explicit.json', 'hidden.json', 'index.html', 'index.json', 'shown.json']);
   const index = JSON.parse(readFileSync(join(out, 'directory', 'index.json'), 'utf8'));
   assert.deepEqual(index.schools.map((s) => s.code), ['explicit', 'shown']);
   const hidden = JSON.parse(readFileSync(join(out, 'directory', 'hidden.json'), 'utf8'));
@@ -99,4 +99,45 @@ test('unlisted must be a boolean', () => {
   }
   const { problems } = entries({ schools: [{ code: 'x1', name: 'X', url: 'https://x1.scoolyz.com', unlisted: null }] });
   assert.deepEqual(problems, [], 'null is the same as leaving it out');
+});
+
+test('/directory/ is a plain page that names no school', () => {
+  const out = mkdtempSync(join(tmpdir(), 'scoolyz-site-'));
+  const { entries: list } = entries({ schools: [{ code: 'hiddenschool', name: 'Hidden School', url: 'https://hiddenschool.scoolyz.com', unlisted: true }] });
+  writeDirectory(list, out);
+  const page = readFileSync(join(out, 'directory', 'index.html'), 'utf8');
+  assert.match(page, /noindex/);
+  assert.doesNotMatch(page, /hiddenschool|Hidden School|index\.json/);
+});
+
+// Every page and script of the public site (site/), as visitors get them.
+function siteFiles(dir = new URL('../site/', import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, '$1')) {
+  return readdirSync(dir, { withFileTypes: true }).flatMap((d) => (d.isDirectory() ? siteFiles(join(dir, d.name)) : [join(dir, d.name)]));
+}
+
+test('no page of the site fetches or links the school list, and none shows the old contact address', () => {
+  for (const file of siteFiles().filter((f) => /\.(html|js|css|json)$/.test(f))) {
+    const text = readFileSync(file, 'utf8');
+    assert.doesNotMatch(text, /index\.json/, `${file} mentions the school list`);
+    assert.doesNotMatch(text, /rabihmtd@/, `${file} still shows the old address`);
+  }
+});
+
+test('the deletion form asks for a school code (en/ar) and never lists schools', () => {
+  const root = new URL('../site/', import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, '$1');
+  for (const [page, label, unknown] of [
+    ['delete-account/index.html', 'School code', "We couldn't find that school code. Check it with your school."],
+    ['delete-account/ar/index.html', 'رمز المدرسة', 'لم نجد رمز المدرسة هذا. تحقّق منه لدى مدرستك.'],
+  ]) {
+    const html = readFileSync(join(root, page), 'utf8');
+    assert.match(html, /<input id="school"/, page);
+    assert.doesNotMatch(html, /<select id="school"/, page);
+    assert.ok(html.includes(`<label for="school">${label}</label>`), page);
+    assert.ok(html.includes(unknown.replace("'", "\'")) || html.includes(unknown), page);
+    assert.ok(html.includes('haidarmortada30@gmail.com'), page);
+  }
+  const js = readFileSync(join(root, 'assets/delete-account.js'), 'utf8');
+  assert.match(js, /\/directory\/\$\{encodeURIComponent\(code\)\}\.json/);
+  assert.doesNotMatch(js, /index\.json|<option|createElement\('option'\)/);
+  assert.match(js, /const TO = 'haidarmortada30@gmail\.com'/);
 });

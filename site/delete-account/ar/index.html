@@ -54,11 +54,10 @@
       <h2>طلب الحذف من دون التطبيق</h2>
       <p>املأ النموذج وأرسله. سيفتح رسالة بريد إلكتروني إلى Scoolyz وفيها طلبك مكتوبًا. لا يُرسَل شيء حتى تضغط «إرسال» في تطبيق البريد.</p>
       <form id="request" novalidate>
-        <label for="school">مدرستك</label>
-        <select id="school" required>
-          <option value="">اختر…</option>
-          <option value="other">غير موجودة في القائمة (اكتب اسمها في الملاحظات)</option>
-        </select>
+        <label for="school">رمز المدرسة</label>
+        <input id="school" dir="ltr" autocomplete="off" autocapitalize="none" spellcheck="false" aria-describedby="school-hint school-error">
+        <p class="hint" id="school-hint">الرمز الذي أعطتك إياه مدرستك لتطبيق Scoolyz. إن لم يكن لديك، اترك هذا الحقل فارغًا واكتب اسم مدرستك في الملاحظات.</p>
+        <p class="error" id="school-error" role="alert" hidden></p>
 
         <label for="name">اسمك الكامل</label>
         <input id="name" autocomplete="name" required>
@@ -79,7 +78,7 @@
 
         <label class="check"><input type="checkbox" id="children"> أغلقوا أيضًا حسابات الدخول الخاصة بأولادي</label>
 
-        <label for="notes">أي شيء آخر (مثلًا سجلات مدرسية تريد محوها)</label>
+        <label for="notes">أي شيء آخر (اسم مدرستك إن لم يكن لديك رمز، أو سجلات مدرسية تريد محوها)</label>
         <textarea id="notes"></textarea>
 
         <label class="check"><input type="checkbox" id="confirm" required> أفهم أن حسابي سيُغلق ولا يمكن استرجاعه.</label>
@@ -90,13 +89,13 @@
 
       <div id="sent" class="notice done" hidden>
         <p><strong>يُفترض أن يُفتح تطبيق البريد وفيه الطلب.</strong> اضغط «إرسال» هناك.</p>
-        <p>إن لم يُفتح شيء، انسخ هذا النص وأرسله إلى <a href="mailto:rabihmtd@gmail.com" dir="ltr">rabihmtd@gmail.com</a>:</p>
+        <p>إن لم يُفتح شيء، انسخ هذا النص وأرسله إلى <a href="mailto:haidarmortada30@gmail.com" dir="ltr">haidarmortada30@gmail.com</a>:</p>
         <pre class="mail" id="mail-text" dir="auto"></pre>
         <button type="button" class="ghost" id="copy">انسخ النص</button>
       </div>
 
       <h3>ماذا يحدث بعد ذلك</h3>
-      <p>نتأكّد من الطلب معك عبر بيانات الاتصال المسجّلة لدى مدرستك، ثم نغلق الحساب خلال <strong>30 يومًا</strong> (وغالبًا قبل ذلك بكثير)، ونردّ عليك لإعلامك. بالنسبة إلى حساب تلميذ، نتأكّد من أحد والديه. للاستفسار: <a href="mailto:rabihmtd@gmail.com" dir="ltr">rabihmtd@gmail.com</a>.</p>
+      <p>نتأكّد من الطلب معك عبر بيانات الاتصال المسجّلة لدى مدرستك، ثم نغلق الحساب خلال <strong>30 يومًا</strong> (وغالبًا قبل ذلك بكثير)، ونردّ عليك لإعلامك. بالنسبة إلى حساب تلميذ، نتأكّد من أحد والديه. للاستفسار: <a href="mailto:haidarmortada30@gmail.com" dir="ltr">haidarmortada30@gmail.com</a>.</p>
     </section>
   </main>
   <footer>
@@ -115,7 +114,11 @@
     "notes": "ملاحظات",
     "yes": "نعم",
     "no": "لا",
-    "missing": "اختر مدرستك، واكتب اسمك وبيانات الدخول، وضع علامة في الخانة الأخيرة.",
+    "missing": "اكتب اسمك وبيانات الدخول، وضع علامة في الخانة الأخيرة.",
+    "codeUnknown": "لم نجد رمز المدرسة هذا. تحقّق منه لدى مدرستك.",
+    "codeOrNotes": "اكتب رمز مدرستك، أو اكتب اسم مدرستك في الملاحظات.",
+    "notListed": "بلا رمز (انظر الملاحظات)",
+    "notChecked": "لم يُتحقَّق منه",
     "copied": "تم النسخ"
   }</script>
   <script src="/assets/delete-account.js" defer></script>

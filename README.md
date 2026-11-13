@@ -94,8 +94,13 @@ curl -I https://scoolyz.com/directory/nope.json         # 404
 
 ## The deletion request form: how requests arrive
 
-`/delete-account/` has a form that writes the request as an **email** (a `mailto:` link) to rabihmtd@gmail.com,
+`/delete-account/` has a form that writes the request as an **email** (a `mailto:` link) to haidarmortada30@gmail.com,
 and shows the same text to copy when the phone has no mail app set up. There is no server.
+
+The person types their **school code**. The page checks it against that one school's `directory/<code>.json`, so
+unlisted schools work too, and says "We couldn't find that school code" otherwise. Nothing on the site lists or
+suggests schools: no page fetches `directory/index.json` (it is for the apps' name search), and `/directory/` itself
+is a plain page. Without a code, the school's name goes in the notes.
 
 - **Good:** no backend and no third party; requests land in your inbox with the sender's address to reply to.
 - **Less good:** it depends on the visitor's mail app (the copy-paste fallback covers that), and spam bots can find
