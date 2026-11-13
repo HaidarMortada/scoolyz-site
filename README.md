@@ -1,13 +1,13 @@
 # scoolyz.com
 
 The public site of Scoolyz, published by GitHub Pages: the **school directory** the apps read, the **privacy
-policy**, the **account deletion** page, a home page, and the Windows app's releases. This repository is public and
-holds no secrets and no app source code (that is in the private SIMS repository).
+policy**, the **terms of use**, the **account deletion** page, a home page, and the Windows app's releases. This
+repository is public and holds no secrets and no app source code (that is in the private SIMS repository).
 
 | Path | What |
 |---|---|
 | `schools.json` | **The one file to edit to add a school** |
-| `site/` | The pages, published as they are (`/`, `/ar/`, `/privacy/`, `/privacy/ar/`, `/delete-account/`, `/delete-account/ar/`, `/404.html`) |
+| `site/` | The pages, published as they are (`/`, `/ar/`, `/privacy/`, `/privacy/ar/`, `/terms/`, `/terms/ar/`, `/delete-account/`, `/delete-account/ar/`, `/404.html`) |
 | `site/logos/` | School logos (`logos/<code>.png`, referenced from `schools.json`) |
 | `site/updates/` | Windows releases: `latest.json`, the installer, its `.sig` (none yet) |
 | `build.mjs` | Builds `_site/`: the pages + `/directory/<code>.json` + `/directory/index.json` + `/download/windows/` |

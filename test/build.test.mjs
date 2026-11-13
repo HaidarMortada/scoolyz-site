@@ -123,6 +123,29 @@ test('no page of the site fetches or links the school list, and none shows the o
   }
 });
 
+test('the terms of use exist in en/ar, link each other, and every footer links them', () => {
+  const root = new URL('../site/', import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, '$1');
+  for (const [page, lang, other, heading] of [
+    ['terms/index.html', 'en', 'https://scoolyz.com/terms/ar/', 'Terms of use'],
+    ['terms/ar/index.html', 'ar', 'https://scoolyz.com/terms/', 'شروط الاستخدام'],
+  ]) {
+    const html = readFileSync(join(root, page), 'utf8');
+    assert.match(html, new RegExp(`<html lang="${lang}"`), page);
+    assert.ok(html.includes(`href="${other}"`), `${page} links its other language`);
+    assert.ok(html.includes(`<h1>${heading}</h1>`), page);
+    assert.ok(html.includes('mailto:haidarmortada30@gmail.com'), page);
+    assert.ok(html.includes(lang === 'en' ? 'Lebanon' : 'لبنان'), `${page} names the governing law`);
+  }
+  for (const [page, href] of [
+    ['index.html', '/terms/'], ['ar/index.html', '/terms/ar/'],
+    ['privacy/index.html', '/terms/'], ['privacy/ar/index.html', '/terms/ar/'],
+    ['delete-account/index.html', '/terms/'], ['delete-account/ar/index.html', '/terms/ar/'],
+  ]) {
+    const footer = readFileSync(join(root, page), 'utf8').split('<footer>')[1] ?? '';
+    assert.ok(footer.includes(`href="${href}"`), `${page} footer links ${href}`);
+  }
+});
+
 test('the deletion form asks for a school code (en/ar) and never lists schools', () => {
   const root = new URL('../site/', import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, '$1');
   for (const [page, label, unknown] of [
