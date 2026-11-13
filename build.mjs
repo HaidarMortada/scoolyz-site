@@ -4,7 +4,8 @@
 //   node build.mjs --dev    schools.dev.json  -> _site-dev/  (local testing: http://localhost allowed)
 //
 // The directory: /directory/<code>.json for each school (the apps look a code up there) and /directory/index.json
-// (the list the apps search by name). No dependencies: plain Node 20+.
+// (the list the apps search by name; a school with "unlisted": true keeps its <code>.json but is left out of it).
+// No dependencies: plain Node 20+.
 
 import { cpSync, existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
@@ -13,7 +14,7 @@ import { fileURLToPath } from 'node:url';
 const ROOT = dirname(fileURLToPath(import.meta.url));
 const CODE = /^[a-z0-9-]{2,32}$/;
 const VERSION = /^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(-[0-9A-Za-z.-]+)?$/;
-const KEYS = ['code', 'name', 'name_ar', 'url', 'logo', 'min_desktop_version', 'min_mobile_version'];
+const KEYS = ['code', 'name', 'name_ar', 'url', 'logo', 'min_desktop_version', 'min_mobile_version', 'unlisted'];
 const NAME_MAX = 200;
 
 function isScoolyzSubdomain(host) {
@@ -104,6 +105,10 @@ export function entries(data, { dev = false, base = 'https://scoolyz.com', siteD
       versions[key] = version;
     }
 
+    if (school.unlisted != null && typeof school.unlisted !== 'boolean') {
+      problems.push(`${at}.unlisted: true or false, or leave it out`);
+    }
+
     result.push({
       code,
       name,
@@ -112,20 +117,26 @@ export function entries(data, { dev = false, base = 'https://scoolyz.com', siteD
       ...(logo.url ? { logo: logo.url } : {}),
       min_desktop_version: versions.min_desktop_version,
       min_mobile_version: versions.min_mobile_version,
+      ...(school.unlisted === true ? { unlisted: true } : {}),
     });
   });
   return { entries: problems.length ? [] : result, problems };
 }
 
-/** Writes <out>/directory/<code>.json and <out>/directory/index.json. */
+/**
+ * Writes <out>/directory/<code>.json for every school and <out>/directory/index.json for the listed ones: an
+ * unlisted school can be found by its exact code (or QR) but not by browsing or searching by name.
+ */
 export function writeDirectory(list, out) {
   const dir = join(out, 'directory');
   mkdirSync(dir, { recursive: true });
-  for (const entry of list) {
+  for (const { unlisted, ...entry } of list) {
+    // The flag stays out of the per-school file: apps only need the school's own details.
     writeFileSync(join(dir, `${entry.code}.json`), `${JSON.stringify(entry, null, 2)}\n`);
   }
   const index = {
-    schools: [...list]
+    schools: list
+      .filter((entry) => !entry.unlisted)
       .sort((a, b) => a.name.localeCompare(b.name, 'en'))
       .map(({ code, name, name_ar, url, logo }) => ({ code, name, ...(name_ar ? { name_ar } : {}), url, ...(logo ? { logo } : {}) })),
   };

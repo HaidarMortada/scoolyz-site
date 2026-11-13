@@ -27,6 +27,8 @@ test('the real schools.json is valid and holds the demo and Al Zahraa', () => {
   const codes = list.map((s) => s.code);
   assert.ok(codes.includes('demo'));
   assert.ok(codes.includes('alzahraa'));
+  assert.equal(list.find((s) => s.code === 'alzahraa').unlisted, true, 'Al Zahraa is unlisted');
+  assert.equal(list.find((s) => s.code === 'demo').unlisted, undefined, 'the demo school stays listed');
 });
 
 test('every problem is reported at once', () => {
@@ -66,4 +68,35 @@ test('the Windows download page forwards only to a scoolyz.com installer', async
   assert.match(ok, /url=https:\/\/scoolyz\.com\/updates\/Scoolyz_1\.2\.0_x64-setup\.exe/);
   assert.doesNotMatch(downloadPage(null), /refresh/);
   assert.doesNotMatch(downloadPage({ platforms: { 'windows-x86_64': { url: 'https://evil.example/x.exe' } } }), /refresh/);
+});
+
+test('an unlisted school has its own file but is not in the list; a listed one is in both', () => {
+  const out = mkdtempSync(join(tmpdir(), 'scoolyz-site-'));
+  const { entries: list, problems } = entries({
+    schools: [
+      { code: 'shown', name: 'Shown', url: 'https://shown.scoolyz.com' },
+      { code: 'explicit', name: 'Explicit', url: 'https://explicit.scoolyz.com', unlisted: false },
+      { code: 'hidden', name: 'Hidden', url: 'https://hidden.scoolyz.com', unlisted: true },
+    ],
+  });
+  assert.deepEqual(problems, []);
+  writeDirectory(list, out);
+  assert.deepEqual(readdirSync(join(out, 'directory')).sort(), ['explicit.json', 'hidden.json', 'index.json', 'shown.json']);
+  const index = JSON.parse(readFileSync(join(out, 'directory', 'index.json'), 'utf8'));
+  assert.deepEqual(index.schools.map((s) => s.code), ['explicit', 'shown']);
+  const hidden = JSON.parse(readFileSync(join(out, 'directory', 'hidden.json'), 'utf8'));
+  assert.equal(hidden.code, 'hidden');
+  assert.equal(hidden.url, 'https://hidden.scoolyz.com');
+  assert.equal(hidden.unlisted, undefined, 'the flag is not published in the school file');
+});
+
+test('unlisted must be a boolean', () => {
+  for (const bad of ['true', 1, 0, 'yes', [], {}]) {
+    const { entries: list, problems } = entries({ schools: [{ code: 'x1', name: 'X', url: 'https://x1.scoolyz.com', unlisted: bad }] });
+    assert.deepEqual(list, []);
+    assert.equal(problems.length, 1, JSON.stringify(bad));
+    assert.match(problems[0], /unlisted/);
+  }
+  const { problems } = entries({ schools: [{ code: 'x1', name: 'X', url: 'https://x1.scoolyz.com', unlisted: null }] });
+  assert.deepEqual(problems, [], 'null is the same as leaving it out');
 });

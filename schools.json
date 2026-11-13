@@ -3,14 +3,15 @@
     {
       "code": "demo",
       "name": "Scoolyz Demo School",
-      "name_ar": "مدرسة Scoolyz التجريبية",
+      "name_ar": "مدرسة سكوليز التجريبية",
       "url": "https://demo.scoolyz.com"
     },
     {
       "code": "alzahraa",
       "name": "Al Zahraa School",
       "name_ar": "مدرسة الزهراء",
-      "url": "https://alzahraa.scoolyz.com"
+      "url": "https://alzahraa.scoolyz.com",
+      "unlisted": true
     }
   ]
 }

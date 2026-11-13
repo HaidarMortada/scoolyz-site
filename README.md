@@ -32,7 +32,9 @@ holds no secrets and no app source code (that is in the private SIMS repository)
 
    `code`: 2–32 of a–z, 0–9, `-`; never reuse one. `url`: `https://<something>.scoolyz.com` only. `logo` (optional):
    put the PNG in `site/logos/`. Optional `min_mobile_version` / `min_desktop_version` (`x.y.z`) send older apps
-   to update.
+   to update. Optional `"unlisted": true` (a boolean, default `false`): the school still gets its own
+   `/directory/<code>.json`, so typing its exact code or scanning its QR works, but it is left out of
+   `/directory/index.json`, the list the apps search by name, so it cannot be found by browsing or name search.
 3. Commit and push to `main`. The workflow checks the file; if it finds a mistake it fails, says which line, and
    the live site stays as it was. After about a minute the school can be found in the apps.
 
