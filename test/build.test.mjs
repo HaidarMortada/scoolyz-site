@@ -134,7 +134,8 @@ test('the terms of use exist in en/ar, link each other, and every footer links t
     assert.ok(html.includes(`href="${other}"`), `${page} links its other language`);
     assert.ok(html.includes(`<h1>${heading}</h1>`), page);
     assert.ok(html.includes('mailto:haidarmortada30@gmail.com'), page);
-    assert.ok(html.includes(lang === 'en' ? 'Lebanon' : 'لبنان'), `${page} names the governing law`);
+    assert.ok(html.includes(lang === 'en' ? 'the courts of Beirut, Lebanon' : 'محاكم بيروت، لبنان'), `${page} names the governing law and courts`);
+    assert.doesNotMatch(html, /DRAFT|مسودّة/, `${page} is final`);
   }
   for (const [page, href] of [
     ['index.html', '/terms/'], ['ar/index.html', '/terms/ar/'],
